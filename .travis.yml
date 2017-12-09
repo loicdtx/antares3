@@ -4,6 +4,8 @@ cache: pip
 
 dist: trusty
 
+sudo: false
+
 addons:
     postgresql: "9.5"
     apt:
@@ -11,7 +13,7 @@ addons:
       - postgresql-9.5-postgis-2.3
 
 
-sudo: required
+
 
 python:
   - "2.7"

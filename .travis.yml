@@ -22,8 +22,8 @@ before_install:
   - sudo apt-get --yes --force-yes update -qq
   # Datacube system dependencies (gdal and netcdf)
   - sudo apt-get install --yes libhdf5-serial-dev libnetcdf-dev
-  - sudo apt-get install postgresql-9.5-postgis-2.2 postgresql-9.5-postgis-scripts
   - sudo apt-get install --yes libgdal1-dev
+  - sudo apt-get install --yes postgresql-9.5-postgis-2.2 postgresql-9.5-postgis-scripts
   #- sudo apt-get install --yes postgresql-9.5-postgis-scripts
   # POstgis dependencies
   #- sudo apt-get install --yes libjson-c-dev postgresql-server-dev-9.5

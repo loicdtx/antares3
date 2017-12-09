@@ -6,9 +6,9 @@ dist: trusty
 
 sudo: false
 
-addons:
-    postgresql: "9.5"
-    apt:
+#addons:
+    #postgresql: "9.5"
+    #apt:
       #packages:
       #- postgresql-9.5-postgis-2.2
 
@@ -21,6 +21,7 @@ before_install:
   - sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable --yes
   - sudo apt-get --yes --force-yes update -qq
   # Datacube system dependencies (gdal and netcdf)
+  - sudo apt-get install -y postgresql-9.5 postgresql-client-9.5 postgresql-contrib-9.5
   - sudo apt-get install --yes postgresql-9.5-postgis-2.2
   - sudo apt-get install --yes libhdf5-serial-dev libnetcdf-dev
   - sudo apt-get install --yes libgdal1-dev

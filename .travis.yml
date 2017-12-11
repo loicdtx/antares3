@@ -24,7 +24,7 @@ before_install:
   #- sudo apt-get install -y postgresql-9.5 postgresql-client-9.5 postgresql-contrib-9.5
   #- sudo apt-get install --yes postgresql-9.5-postgis-2.2
   - sudo apt-get install -y software-properties-common
-  - add-apt-repository "deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main"
+  - sudo add-apt-repository "deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main"
   - sudo apt-get install -y wget 
   - wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
   - sudo apt-get update

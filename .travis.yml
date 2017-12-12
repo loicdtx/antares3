@@ -1,10 +1,12 @@
 language: python
 
+services: postgresql
+
 cache: pip
 
 dist: trusty
 
-sudo: required
+sudo: true
 
 addons:
     postgresql: "9.6"
@@ -12,7 +14,7 @@ addons:
       #packages:
       #- postgresql-9.6-postgis-2.3
 
-
+env: "SYMFONY_VERSION=\"3.3.*\" DB=postgresql"
 python:
   - "2.7"
   - "3.6"
@@ -22,15 +24,15 @@ before_install:
   - sudo apt-get --yes --force-yes update -qq
   # Datacube system dependencies (gdal and netcdf)
   #- sudo apt-get install -y postgresql-9.5 postgresql-client-9.5 postgresql-contrib-9.5
-  - sudo apt-get install --yes postgresql-9.6-postgis-2.3
-  - sudo service postgresql restart
+  #- sudo apt-get install --yes postgresql-9.6-postgis-2.3
+  #- sudo service postgresql restart
   #- sudo apt-get install -y software-properties-common
   #- sudo add-apt-repository "deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main"
   #- sudo apt-get install -y wget 
   #- wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
   #- sudo apt-get update
-  -sudo apt-get autoremove postgis*
-  - sudo apt-get install -y postgresql-9.6-postgis-2.3
+  #-sudo apt-get autoremove postgis*
+  #- sudo apt-get install -y postgresql-9.6-postgis-2.3
   - sudo apt-get install --yes libhdf5-serial-dev libnetcdf-dev
   - sudo apt-get install --yes libgdal1-dev
   #- sudo apt-get install --yes postgresql-9.5-postgis-2.2 postgresql-9.5-postgis-scripts
@@ -53,6 +55,7 @@ install:
   - pip install -e .
 
 before_script:
+  - sudo apt-get install postgresql-9.6-postgis-2.3 postgis -y -q
   - psql -U postgres -c "create extension postgis"
   - createdb datacube
   - datacube -v system init

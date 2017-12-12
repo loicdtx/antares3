@@ -34,7 +34,7 @@ before_install:
   #-sudo apt-get autoremove postgis*
   #- sudo apt-get install -y postgresql-9.6-postgis-2.3
   - sudo apt-get install --yes libhdf5-serial-dev libnetcdf-dev
-  #- sudo apt-get install --yes libgdal1-dev
+  - sudo apt-get install --yes libgdal1-dev
   - sudo apt-get install -y hdf5-tools netcdf-bin gdal-bin
   #- sudo apt-get install --yes postgresql-9.5-postgis-2.2 postgresql-9.5-postgis-scripts
   #- sudo apt-get install --yes postgresql-9.5-postgis-scripts 

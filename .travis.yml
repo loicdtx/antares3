@@ -8,8 +8,8 @@ dist: trusty
 
 sudo: true
 
-#addons:
- #   postgresql: "9.6"
+addons:
+    postgresql: "9.6"
     #apt:
       #packages:
       #- postgresql-9.6-postgis-2.3
@@ -55,7 +55,7 @@ install:
   - pip install -e .
 
 before_script:
-  - sudo apt-get install postgresql-9.6-postgis-2.3 postgis -y -q
+  - sudo apt-get install postgresql-10-postgis-2.4 postgresql-9.6-postgis-2.3 postgis -y -q
   - psql -U postgres -c "create extension postgis"
   - createdb datacube
   - datacube -v system init

@@ -13,6 +13,7 @@ from rasterio.crs import CRS as rasterioCRS
 from shapely import geometry
 from django.db import connection
 
+from madmex.models import Tag
 from madmex.io.vector_db import from_geobox
 from madmex.lcc.transform.elliptic import Transform as Elliptic
 from madmex.lcc.transform.kapur import Transform as Kapur
@@ -300,8 +301,11 @@ INNER JOIN
             c.execute(query1)
             c.execute(query2, [self.crs, name])
             fc = c.fetchall()
+        # Map tag_id to numeric_code
+	qs=Tag.objects.exclude(scheme='')
+        tag_mapping = {x.id:x.numeric_code for x in qs}
         # Deserialize geojson geometries
-        fc = [(json.loads(x[0]), x[1]) for x in fc]
+        fc = [(json.loads(x[0]), tag_mapping[x[1]]) for x in fc]
         return fc
 
 

@@ -17,6 +17,9 @@ from madmex.modeling import BaseModel
 from madmex.models import Region, Country, Model, PredictClassification
 from datacube.model import GridSpec
 
+import logging
+logger = logging.getLogger(__name__)
+
 """
 The wrapper module gathers functions that are typically called by
 command lines
@@ -378,5 +381,6 @@ def detect_and_classify_change(tiles, algorithm, change_meta, band_list, mmu,
         return True
     except Exception as e:
         print('Change detection failed because: %s' % e)
+        logger.debug('Change detection failed because: %s' % e)
         return False
 

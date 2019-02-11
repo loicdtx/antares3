@@ -1,6 +1,7 @@
 import rasterio
 import numpy as np
 import os
+import sys
 import json
 from datetime import datetime
 import gc
@@ -9,6 +10,7 @@ from datacube.api import GridWorkflow
 from datacube.utils.geometry import Geometry, CRS
 from importlib import import_module
 from madmex.util.xarray import to_float
+from madmex.util import StreamToLogger
 from madmex.util import chunk
 from madmex.io.vector_db import VectorDb, load_segmentation_from_dataset
 from madmex.overlay.extractions import zonal_stats_xarray
@@ -19,6 +21,13 @@ from datacube.model import GridSpec
 
 import logging
 logger = logging.getLogger(__name__)
+
+stdout_logger = logging.getLogger('STDOUT')
+stdl = StreamToLogger(stdout_logger, logging.INFO)
+sys.stdout = stdl
+stderr_logger = logging.getLogger('STDERR')
+stdl = StreamToLogger(stderr_logger, logging.ERROR)
+sys.stderr = stdl
 
 """
 The wrapper module gathers functions that are typically called by

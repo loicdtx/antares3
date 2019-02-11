@@ -8,7 +8,6 @@ import yaml
 import jinja2
 
 import logging
-import sys
 
 def randomword(length):
     """Generate a random string of desired length

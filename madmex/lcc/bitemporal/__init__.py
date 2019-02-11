@@ -13,7 +13,6 @@ from rasterio.crs import CRS as rasterioCRS
 from shapely import geometry
 from django.db import connection
 
-from madmex.models import Tag
 from madmex.io.vector_db import from_geobox
 from madmex.lcc.transform.elliptic import Transform as Elliptic
 from madmex.lcc.transform.kapur import Transform as Kapur

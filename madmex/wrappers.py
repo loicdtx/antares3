@@ -9,8 +9,8 @@ import datacube
 from datacube.api import GridWorkflow
 from datacube.utils.geometry import Geometry, CRS
 from importlib import import_module
+from madmex.loggerwriter import LoggerWriter
 from madmex.util.xarray import to_float
-from madmex.util import StreamToLogger
 from madmex.util import chunk
 from madmex.io.vector_db import VectorDb, load_segmentation_from_dataset
 from madmex.overlay.extractions import zonal_stats_xarray
@@ -22,11 +22,9 @@ from datacube.model import GridSpec
 import logging
 logger = logging.getLogger(__name__)
 
-stdout_logger = logging.getLogger('STDOUT')
-stdl = StreamToLogger(stdout_logger, logging.INFO)
+stdl = LoggerWriter(logger.debug)
 sys.stdout = stdl
-stderr_logger = logging.getLogger('STDERR')
-stdl = StreamToLogger(stderr_logger, logging.ERROR)
+stdl = LoggerWriter(logger.error)
 sys.stderr = stdl
 
 """
@@ -390,6 +388,6 @@ def detect_and_classify_change(tiles, algorithm, change_meta, band_list, mmu,
         return True
     except Exception as e:
         print('Change detection failed because: %s' % e)
-        logger.debug('Change detection failed because: %s' % e)
+        logger.exception('Change detection failed because: %s' % e)
         return False
 

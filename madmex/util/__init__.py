@@ -7,6 +7,9 @@ import os
 import yaml
 import jinja2
 
+import logging
+import sys
+
 def randomword(length):
     """Generate a random string of desired length
     """
@@ -190,3 +193,16 @@ def join_dicts(*args, join='inner'):
                 for k in key_iter}
     else:
         raise ValueError('Unknown join type')
+
+class StreamToLogger(object):
+   """
+   Fake file-like stream object that redirects writes to a logger instance.
+   """
+   def __init__(self, logger, log_level=logging.INFO):
+      self.logger = logger
+      self.log_level = log_level
+      self.linebuf = ''
+
+   def write(self, buf):
+      for line in buf.rstrip().splitlines():
+         self.logger.log(self.log_level, line.rstrip())

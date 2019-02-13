@@ -20,7 +20,7 @@ from madmex.models import Region, Country, Model, PredictClassification
 from datacube.model import GridSpec
 
 import logging
-logging.basicConfig(format='%(asctime)s - %(module)s %(funcName)s - %(name)s - (levelname)s - %(message)s’)
+logging.basicConfig(format="%(asctime)s - %(module)s %(funcName)s - %(name)s - (levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
 
 stdl = LoggerWriter(logger.debug)
